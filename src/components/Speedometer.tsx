@@ -54,8 +54,10 @@ class App extends React.Component<IProps, IState> {
     
   calculateSpeed() {
     
-    this.setState({now_position: this.state.gw2data_ws?.coordinates.playerPosition})
-    this.setState({now_timestamp: new Date().getTime()})
+    this.setState({
+      now_position: this.state.gw2data_ws?.coordinates.playerPosition,
+      now_timestamp: new Date().getTime()
+    })
     if (JSON.stringify(this.state.last_position) == JSON.stringify(this.state.now_position)) {
       return
     }
@@ -71,9 +73,11 @@ class App extends React.Component<IProps, IState> {
     let speed = (distance * 39.3700787) / 0.01 ;
     speed = Math.round((speed*100/10000)*99/72)
 
-    this.setState({speed: speed}) 
-    this.setState({last_position: this.state.now_position})
-    this.setState({last_timestamp: this.state.now_timestamp})
+    this.setState({
+      speed, 
+      last_position: this.state.now_position,
+      last_timestamp: this.state.now_timestamp
+    })
   }
 
   componentWillUnmount() {
