@@ -1,6 +1,7 @@
 import React from 'react';
 import Window from './window/window';
 import { IGw2MumbleLinkData } from '../shared/interfaces/datatransfer/IGw2MumbleLinkData';
+import './speedometer.css';
 
 const { ipcRenderer } = window.require('electron')
 
@@ -85,16 +86,16 @@ class App extends React.Component<IProps, IState> {
 
   render () {
     return (
-        <Window title="Speedometer" path="speedometer">
-            <div>
+        <Window title="Speedometer" path="speedometer" className="speedometer">
+          <div>
             Coordinates (IPC): {this.state.gw2data_ipc?.coordinates.playerPosition.X} {this.state.gw2data_ipc?.coordinates.playerPosition.Y} {this.state.gw2data_ipc?.coordinates.playerPosition.Z}
-            </div>
-            <div>
+          </div>
+          <div>
             Coordinates (WS): {this.state.gw2data_ws?.coordinates.playerPosition.X} {this.state.gw2data_ws?.coordinates.playerPosition.Y} {this.state.gw2data_ws?.coordinates.playerPosition.Z}
-            </div>
-            <div>
+          </div>
+          <div>
             speed: {this.state.speed}
-            </div>
+          </div>
         </Window>
     );
   }
