@@ -7,13 +7,14 @@ function IconCheckbox(props) {
     let checkedIcon = props.iconChecked ? props.iconChecked : faCheckSquare;
     let unCheckedIcon = props.iconUnchecked ? props.iconUnchecked : faSquare;
     let icon = props.setting.value ? checkedIcon : unCheckedIcon;
-
+    let classname = props.className ? props.className : "";
+    
     function toggleCheck() {
         ipcRenderer.send("updateconfig", {path: props.setting.path, value: !props.setting.value})
     }
 
     return (
-        <span className="button" onClick={toggleCheck} title={props.popup}>
+        <span className={"button "+ classname} onClick={toggleCheck} title={props.popup}>
             <FontAwesomeIcon icon={icon} className="mr-2" style={{width: "1em"}}/>
             {props.setting.name}
             {props.children}

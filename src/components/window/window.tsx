@@ -9,14 +9,16 @@ interface IProps {
     path: string,
     title: string,
     titleextra?: any,
-    children: React.ReactNode
+    children: React.ReactNode,
+    className?: string
 }
 
 function Window(props: IProps) {
+    let classname = props.className ? props.className : "";
     function closeWindow() {
         ipcRenderer.send("show-page", {path:props.path, show: false});
     }
-    return  <div id="app" className="vh-100 pb-4">
+    return  <div id="app" className={"vh-100 pb-4 "+ classname}>
             <div id="title">
                 <div id="titlebar" className="button pl-2">
                     <span className="button">{props.title}</span>
