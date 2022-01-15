@@ -8,6 +8,8 @@ import { IPositionMarker, MarkerType } from "../../interfaces/render/marker";
 import { IVideoData } from "../../interfaces/datatransfer/IVideoData";
 import { IOverlaySettings } from "../../interfaces/settings/IOverlaySettings";
 import { OverlaySettings } from "./OverlaySettings";
+import { SpeedometerSettings } from "./SpeedometerSettings";
+import { ISpeedometerSettings } from "../../interfaces/settings/ISpeedometerSettings";
 
 const fs = require('fs');
 
@@ -20,6 +22,9 @@ export class Settings implements ISettings {
 
     @Type(() => OverlaySettings)
     overlaySettings: IOverlaySettings = new OverlaySettings();
+
+    @Type(() => SpeedometerSettings)
+    speedometer: ISpeedometerSettings = new SpeedometerSettings();
 
     configFile: string;
 
@@ -34,8 +39,9 @@ export class Settings implements ISettings {
         fs.writeFileSync(this.configFile, JSON.stringify({
             render: this.render,
             marks: this.marks,
-            overlaySettings: this.overlaySettings
-        }));
+            overlaySettings: this.overlaySettings,
+            speedometer: this.speedometer
+        }, null, 2));
     }
 
     addMarkerGroupFromJson(json: string): void {
